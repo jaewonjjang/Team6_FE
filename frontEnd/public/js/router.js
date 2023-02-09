@@ -6,8 +6,8 @@ import { chartView } from "./myPage/chart/view.js";
 import { comparisonView } from "./myPage/comparison/view.js";
 import { inputOilInfoView } from "./myPage/inputOilInfo/view.js";
 import { historyView } from "./myPage/history/view.js";
+import { gasSTDView } from "./GSTdetail/view.js";
 import { notFoundView } from "./notFound/view.js";
-import { mapView } from "./mapView/view.js";
 import { HEADER, METHOD } from "../common/variable.js";
 
 const $body = document.querySelector("body");
@@ -22,7 +22,7 @@ const router = async () => {
         { path: "/chart", view: chartView },
         { path: "/comparison", view: comparisonView },
         { path: "/history", view: historyView },
-        { path: "/mapView", view: mapView },
+        { path: "/gasSTDView", view: gasSTDView},
         { path: "/404", view: notFoundView }
     ];
 
@@ -41,17 +41,19 @@ const router = async () => {
     }
 
     const getNode = match.route.view;
-    $body.replaceWith(getNode());
+
+    const $container = getNode();
+    $body.replaceWith($container);
 }
 
 // 페이지 전환 함수
 const navigateTo = url => {
     history.pushState(null, null, url);
-    router();
+    router();    
 }
 
 window.addEventListener("popstate", () => router());
-window.addEventListener("DOMContentLoaded", () => router());
+// window.addEventListener("DOMContentLoaded", () => router());
 
 // DOM이 렌더링 되면 router 함수 실행
 document.addEventListener("DOMContentLoaded", () => {
@@ -64,17 +66,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
     router();
 });
-
-fetch("http://43.200.157.18:8080/api/v1/user", {
-    method: METHOD.POST,
-    headers: HEADER.POST,
-    body: JSON.stringify({
-        "id":"test3",
-        "password":"testpassword",
-        "gender":"M",
-        "age": "20대"
-    }),
-    withCredentials: true
-}).then((res) => {
-    console.log(res);
-})

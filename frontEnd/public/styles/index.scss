@@ -617,8 +617,6 @@ a {
                 }
                 & .main__SearchOptionButtonGroup{
                     background-color:white;
-                    // border: 1px solid #14BD7E;
-                    // border-radius: 5px;
                     width:15vw;
                     height:3vh;
                     margin-left:2vw;
@@ -655,6 +653,9 @@ a {
                     }
                 }
                 & .main__SearchResult {
+                    display: flex;
+                    flex-direction: column;
+                    box-sizing: content-box;
                     border:2px solid #14BD7E;
                     border-radius: 5px;
                     width:15vw;
@@ -662,8 +663,42 @@ a {
                     margin-left:2vw;
                     margin-top:3vh;
                     background-color: white;
-                    // overflow: scroll;
+                    overflow: scroll;
                     padding:0;
+                    overflow-x:scroll;
+                    & .main__ResultList { // 결과를 카드 형식으로 출력
+                        display: inherit;
+                        justify-content: center;
+                        flex-direction: column;
+                        width:15vw;
+                        height:5.7vh;
+                        margin-bottom: 20px;
+                        & .main__ResultList__Title {
+                            width:15vw;
+                            height:2vh;
+                            font-size: 15px;
+                            font-weight: bold;
+                            justify-content: flex-start;
+                            padding-bottom: 10px;
+                            &:hover {
+                                cursor:pointer;
+                                color: blue;
+                            }
+                            & .main__ResultList__Title_Logo {
+                                width:20px;
+                                height:20px;
+                            }
+                        }
+                        & .main__ResultList__Contents {
+                            width:15vw;
+                            height:3vh;
+                            font-size: 13px;
+                            font-weight: lighter;
+                            color: grey;
+                            line-height: 20px;
+                            padding-left: 10px;
+                        }
+                    }
                 }
             }
         }
@@ -677,7 +712,7 @@ a {
             height:40px;
             margin-top:20vh;
             margin-right:auto;
-            background-color:white;
+            background-color:#14bd72;
             align-items: center;
             justify-content: center;
         }
@@ -698,7 +733,6 @@ a {
             background-color: green;
             color:white;
             font-size:11px;
-            // border:2px solid blue;
             border-radius: 5px;
         }
     }
@@ -1704,20 +1738,4 @@ a {
             }
         }
     }
-}
-
-#searchResultTitle {
-    font-size:16px;
-    font-weight: bold;
-    line-height: 2vh;
-    overflow: scroll;
-}
-
-.GasStationLogo{
-    width:28px;
-    height:28px;
-}
-
-.ResultContents {
-    color:grey;
 }
